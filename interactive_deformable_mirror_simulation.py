@@ -238,8 +238,6 @@ class MainWindow(QMainWindow):
         padding_layout.addWidget(self.padding_factor_input)
         psf_layout.addLayout(padding_layout)
 
-        # Remove Crop Size input from GUI
-
         self.log_scale_checkbox = QCheckBox("Log Scale PSF")
         self.log_scale_checkbox.setChecked(False)
         self.log_scale_checkbox.stateChanged.connect(self.update_plots)
@@ -268,7 +266,6 @@ class MainWindow(QMainWindow):
             spin.setSingleStep(0.01)
             spin.setValue(self.coefficients[i])
 
-            # Connect slider and spin box
             s.valueChanged.connect(lambda val, idx=i: self.slider_changed(idx, val))
             spin.valueChanged.connect(lambda val, idx=i: self.spinbox_changed(idx, val))
 
@@ -285,13 +282,12 @@ class MainWindow(QMainWindow):
 
         slider_group.setLayout(slider_vlayout)
 
-        # Put slider_group inside a CustomScrollArea
         scroll_area = CustomScrollArea()
         scroll_area.setWidgetResizable(True)
         scroll_widget = QWidget()
         scroll_layout = QVBoxLayout(scroll_widget)
         scroll_layout.addWidget(slider_group)
-        scroll_layout.addStretch()  # Ensure sliders are at the top
+        scroll_layout.addStretch()
         scroll_area.setWidget(scroll_widget)
 
         control_layout.addWidget(scroll_area)
@@ -373,10 +369,8 @@ class MainWindow(QMainWindow):
         except ValueError:
             padding_factor = self.padding_factor
 
-        # Fixed crop_size within the code
         crop_size = self.crop_size
 
-        # Fixed grid_size is 100 internally
         original_psf = self.psf_sim.simulate_psf(
             wavefront, 
             self.mask, 
@@ -482,7 +476,6 @@ class MainWindow(QMainWindow):
             self.num_actuators_x = int(self.actuators_x_input.text())
             self.num_actuators_y = int(self.actuators_y_input.text())
             self.padding_factor = int(self.padding_factor_input.text())
-            # crop_size is fixed; no need to set from GUI
         except ValueError:
             # If invalid input, do nothing and return
             return
