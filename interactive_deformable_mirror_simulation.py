@@ -202,7 +202,7 @@ class MainWindow(QMainWindow):
         self.actuators_y_input = QLineEdit(str(self.num_actuators_y))
 
         form_layout.addRow(QLabel("Wavelength"), self.wavelength_input)
-        form_layout.addRow(QLabel("Sigma"), self.sigma_input)
+        form_layout.addRow(QLabel("Actuator Influence"), self.sigma_input)
         form_layout.addRow(QLabel("Arrangement"), self.arrangement_input)
         form_layout.addRow(QLabel("Actuators X"), self.actuators_x_input)
         form_layout.addRow(QLabel("Actuators Y"), self.actuators_y_input)
